@@ -6,6 +6,8 @@ date: "2022-09-20"
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(palmerpenguins)
 ```
 
 ## R Markdown
@@ -14,16 +16,42 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r}
+data("penguins", package = "palmerpenguins")
 ```
 
-## Including Plots
+## Description of the penguins dataset
 
-You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+#variables included in this dataset
+names(penguins)
+
+#statistical summary
+skimr::skim(penguins)
+
+#number of rows
+nrow(penguins)
+
+#number of columns
+ncol(penguins)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+There are 344 rows and 8 columns in the penguins dataset. Important variables recorded in this dataset include: species, island, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g, sex, year. 
+The mean flipper lengths is 200.01520 mm. 
+
+## Scatter plot
+
+```{r}
+#plot flipper length (y) vs bill length (x) and color with species
+plot_penguins = 
+  tibble(penguins,
+    x = bill_length_mm,
+    y = flipper_length_mm
+  )
+
+ggplot(plot_penguins, aes(x = x, y = y, color=species)) + geom_point() + xlab("bill length in mm") + ylab("flipper length in mm") + ggtitle("Distribution of Bill and Flipper Length in Penguins by Species")
+
+#Export scatterplot to project directory using ggsave
+ggsave("firt_scatterplot.pdf")
+```
