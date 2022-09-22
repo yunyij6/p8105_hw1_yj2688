@@ -62,7 +62,7 @@ ggsave("firt_scatterplot.pdf")
 
 ## Create a data frame
 
-```{r}
+```{r, eval = FALSE}
 #creating data frame using tibble
 df = 
   tibble(
@@ -76,8 +76,9 @@ df =
 df
 ```
 
+
 ## Take mean of coloums in df
-```{r}
+```{r, eval = FALSE}
 #using pull to pull out column from df
 #only numeric and character variables can be pulled
 
@@ -89,7 +90,7 @@ mean(a)
 
 ```
 
-```{r}
+```{r, eval = FALSE}
 #using as.numeric to convert data type
 
 as.numeric(a>0)
@@ -99,6 +100,5 @@ as.numeric(d)
 mean(a>0)
 mean(c)
 mean(d)
-
 ```
 
