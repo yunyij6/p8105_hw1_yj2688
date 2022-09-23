@@ -68,37 +68,40 @@ df =
   tibble(
     a = rnorm(10, mean=0, sd=1),
     a > 0,
-    c = c(character(10)),
-    d = factor(levels = 3, length(10))
+    c = c("a","b","c","d","e","f","g","h","i","j"),
+    d = factor(c("red","yellow","blue","blue","yellow","red","red","yellow","blue","red"))
   )
 
 #check dataframe
 df
 ```
-
+A data frame with 10 rows and 4 columns was produced. 
 
 ## Take mean of coloums in df
 ```{r, eval = FALSE}
 #using pull to pull out column from df
-#only numeric and character variables can be pulled
 
 a <- df %>% pull(a)
-
 c <- df %>% pull(c)
 
 mean(a)
 
 ```
+When extracting the columns above with pull(), R only allows numeric vector and characteristic vector to be extracted. And for the mean() function, only numeric and logical arguments can be insered. Since c is a character vector, we will only obtain the mean for the numeric vector. The mean for a is -0.1012498. 
 
 ```{r, eval = FALSE}
 #using as.numeric to convert data type
 
-as.numeric(a>0)
-as.numeric(c)
-as.numeric(d)
+b = as.numeric(a>0)
+c = as.numeric(c)
+d = as.numeric(d)
 
-mean(a>0)
+mean(b)
 mean(c)
 mean(d)
 ```
+When converting character vectors to numeric with as.numeric, NA were produced. This means the character vectors are not formatted as numbers and we can not get an average from it.
+
+The mean for the logistic vector is 0.5, and the mean for the factor vector is 2. 
+
 
