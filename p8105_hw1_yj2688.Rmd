@@ -55,7 +55,7 @@ plot_penguins =
 ggplot(plot_penguins, aes(x = x, y = y, color=species)) + geom_point() + xlab("bill length in mm") + ylab("flipper length in mm") + ggtitle("Distribution of Bill and Flipper Length in Penguins by Species")
 
 #Export scatterplot to project directory using ggsave
-ggsave("firt_scatterplot.pdf")
+ggsave("first_scatterplot.pdf")
 ```
 
 ## Problem 2
